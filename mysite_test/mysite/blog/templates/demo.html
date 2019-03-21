@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>登录</title>
+    <style>
+    body{ margin:0; padding:0; color:#666; font-size: 15px; background:#c1d2fe;}
+    .form_login{ max-width:640px; margin:auto; text-align:center; padding-top:200px;}
+    .form-group{ width:355px; margin:0 auto; height:50px; margin-bottom:20px;}
+    .form-group .form-control{ display:block; width:300px; height:48px; float:right; border:1px solid #ccc; padding:0; margin-left:0; text-indent:1em; themeColor: #00a988;}
+    .form-group .btn{ width:350px; height:50px; background-color:#0160A0; border:0px; color:#fff; font-size:14px;}
+    </style>
+</head>
+
+<body>
+<div class="form_login">
+    <div class="form-group">
+        <img src="/static/images/user.png" style="width:50px; height:50px;">
+		<input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off">
+    </div>
+
+    <div class="form-group">
+        <img src="/static/images/pw.png" style="width:50px; height:50px;">
+        <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off">
+    </div></br>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-block btn-login" onclick="login(this)">登录</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function login(id){
+        var username=document.getElementById("username").value;
+        var password=document.getElementById("password").value;
+        console.log(username);
+        console.log(password);
+        if (username&&password) {
+            $.ajax({
+              url:"http://127.0.0.1:8000/blog/demo/",
+              type:"get",//post
+              data:{
+                     "username":username,
+                     "password":password
+                   },
+              dataType:"json",
+              success:function(data){
+                //跳转
+                console.log(data);
+                window.location.href = data;
+
+          }
+          });
+        }
+    };
+</script>
+</body>
+</html>
